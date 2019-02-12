@@ -1,4 +1,4 @@
-from big_fiubrother_core.abstract_message import AbstractMessage
+from big_fiubrother_core.messages import AbstractMessage
 
 class UnknownFaceMessage(AbstractMessage):
 

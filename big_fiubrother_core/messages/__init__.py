@@ -1,0 +1,4 @@
+from big_fiubrother_core.messages.abstract_message import AbstractMessage
+from big_fiubrother_core.messages.camera_message import CameraMessage
+from big_fiubrother_core.messages.face_detection_message import FaceDetectionMessage
+from big_fiubrother_core.messages.unknown_face_message import UnknownFaceMessage

@@ -1,0 +1,4 @@
+rabbitmqhost: 'localhost'
+face_classification_queue: 'FACE_CLASSIFICATION'
+frame_display_queue: 'FRAME_DISPLAY'
+classifier_pkl: '/home/gabriel/Desktop/bigfiubrother/big-fiubrother-core/sv_fiuba.pkl'

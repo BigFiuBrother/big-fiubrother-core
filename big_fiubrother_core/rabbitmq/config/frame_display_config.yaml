@@ -1,0 +1,2 @@
+rabbitmqhost: 'localhost'
+frame_display_queue: 'FRAME_DISPLAY'

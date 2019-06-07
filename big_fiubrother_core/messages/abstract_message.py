@@ -1,5 +1,6 @@
 import pickle
 
+
 class AbstractMessage:
 
     def encode(self):

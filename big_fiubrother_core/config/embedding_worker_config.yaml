@@ -1,0 +1,11 @@
+message_publisher:
+  type: 'queue_publisher_rabbitmq'
+  rabbitmqhost: 'localhost'
+  queue_name: 'FACE_CLASSIFICATION'
+message_consumer:
+  type: 'queue_consumer_rabbitmq'
+  rabbitmqhost: 'localhost'
+  queue_name: 'FACE_EMBEDDING'
+face_embedder:
+  type: 'movidius_facenet'
+  movidius_id: 1

@@ -5,3 +5,4 @@ from big_fiubrother_core.messages.face_classification_message import FaceClassif
 from big_fiubrother_core.messages.face_embedding_message import FaceEmbeddingMessage
 from big_fiubrother_core.messages.unknown_face_message import UnknownFaceMessage
 from big_fiubrother_core.messages.display_frame_message import DisplayFrameMessage
+from big_fiubrother_core.messages.message_client_factory import MessageClientFactory

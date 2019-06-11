@@ -1,6 +1,0 @@
-rabbitmqhost: 'localhost'
-face_embedding_queue: 'FACE_EMBEDDING'
-face_classification_queue: 'FACE_CLASSIFICATION'
-face_embedder:
-  type: 'movidius_facenet'
-  movidius_id: 1

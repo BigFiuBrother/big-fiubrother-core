@@ -1,12 +1,10 @@
-from big_fiubrother_core.messages import DisplayFrameMessage
-import pika
-import threading
-import yaml
-import cv2
+from big_fiubrother_core.messages import DisplayFrameMessage, MessageClientFactory
 import sys
+import cv2
+import yaml
 
 
-class FrameDisplay:
+class FrameDisplayMock:
 
     def __init__(self, config_file_path):
 
@@ -14,37 +12,20 @@ class FrameDisplay:
         with open(config_file_path) as config_file:
             settings = yaml.load(config_file)
 
-        rabbitmqhost = settings['rabbitmqhost']
-        frame_display_queue = settings['frame_display_queue']
-
-        # Create connection and channel
-        self.connection = pika.BlockingConnection(pika.ConnectionParameters(
-            host=rabbitmqhost))
-        self.channel = self.connection.channel()
-
-        # Set frame display queue name
-        self.frame_display_queue = frame_display_queue
-
-        # Consume from queue
-        self.channel.basic_consume(self._display_frame, queue=self.frame_display_queue, no_ack=True)
-
-        # Create thread
-        self.thread = threading.Thread(target=self._start_consuming)
+        # Create Message consumer
+        self.message_consumer = MessageClientFactory.buildConsumer(settings['message_consumer'], self._display_frame)
 
     def start(self):
-        self.thread.start()
 
-    def _start_consuming(self):
-        self.channel.start_consuming()
+        self.message_consumer.start()
 
     def stop(self):
 
-        self.channel.stop_consuming()
-        self.thread.join()
+        self.message_consumer.stop()
 
-    def _display_frame(self, ch, method, props, body):
+    def _display_frame(self, message_bytes):
 
-        display_frame_message = DisplayFrameMessage.decode(body)
+        display_frame_message = DisplayFrameMessage.decode(message_bytes)
         face_boxes = display_frame_message.face_boxes
         face_ids = display_frame_message.face_ids
         face_id_probs = display_frame_message.face_id_probs
@@ -86,15 +67,15 @@ if __name__ == "__main__":
         print("CAMBIAR DESCRIPCION")
         print("")
         print("Usage: ")
-        print("python FrameDisplay.py 'config_file.yaml'")
+        print("python frame_display_mock.py 'config_file.yaml'")
         print("--------------------------------")
 
     else:
 
         config_file = sys.argv[1]
-        worker = FrameDisplay(config_file)
+        worker = FrameDisplayMock(config_file)
 
-        print(" [x] Running FrameDisplay. Press any key + enter to exit.")
+        print(" [x] Running FrameDisplayMock. Press any key + enter to exit.")
         worker.start()
         input()
 

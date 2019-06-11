@@ -1,7 +1,0 @@
-rabbitmqhost: 'localhost'
-face_embedding_queue: 'FACE_EMBEDDING'
-face_detection_queue: 'FACE_DETECTION'
-face_detector:
-  type: 'movidius_ssd'
-  movidius_id: 0
-  longrange: 1

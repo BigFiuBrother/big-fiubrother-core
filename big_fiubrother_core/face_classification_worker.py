@@ -40,6 +40,8 @@ class FaceClassificationWorker:
 
         # Get message
         face_classification_message = FaceClassificationMessage.decode(message_bytes)
+        camera_id = face_classification_message.camera_id
+        timestamp = face_classification_message.timestamp
         frame_id = face_classification_message.frame_id
         frame = face_classification_message.frame_bytes
         face_embeddings = face_classification_message.face_embeddings
@@ -53,8 +55,8 @@ class FaceClassificationWorker:
             face_id_probs.append(str(pred_prob))
 
         # Post frame display message
-        frame_display_message = DisplayFrameMessage(frame_id, frame, face_classification_message.face_boxes, face_ids,
-                                                    face_id_probs)
+        frame_display_message = DisplayFrameMessage(camera_id, timestamp, frame_id, frame,
+                                                    face_classification_message.face_boxes, face_ids, face_id_probs)
         self.message_publisher.publish(frame_display_message.encode())
 
 

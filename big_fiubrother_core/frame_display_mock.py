@@ -35,11 +35,12 @@ class FrameDisplayMock:
         frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
         for i in range(len(face_boxes)):
             face_box = face_boxes[i]
-            face_id = face_ids[i]
-            face_id_prob = face_id_probs[i]
             cv2.rectangle(frame, (int(face_box[0]), int(face_box[1])), (int(face_box[2]), int(face_box[3])),
                           (0, 0, 255), 2)
-            self._write_text(frame, (int(face_box[0]), int(face_box[1])), face_id + ", " + face_id_prob)
+            if i < len(face_ids):
+                face_id = face_ids[i]
+                face_id_prob = face_id_probs[i]
+                self._write_text(frame, (int(face_box[0]), int(face_box[1])), face_id + ", " + face_id_prob)
         cv2.imshow('img', frame)
         cv2.waitKey(1)
 

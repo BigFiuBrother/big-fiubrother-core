@@ -5,11 +5,11 @@ from datetime import datetime
 import time
 
 # Start webcam
-camera = cv2.VideoCapture(2)
+camera = cv2.VideoCapture(0)
 ret, image = camera.read()
 cv2.imshow('img', image)
 
-fps = 10
+fps = 30
 fps_inv = 1.0 / fps
 print(fps_inv)
 
@@ -43,10 +43,7 @@ while True:
         last_frame_time = time_now
         frames_sent += 1
 
-        cv2.imwrite("temp.jpg", image)
-        f = open("temp.jpg", "rb")
-        frame_bytes = f.read()
-        f.close()
+        frame_bytes = cv2.imencode('.jpg', image)[1]
 
         # Post face classification job request
         timestamp = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]

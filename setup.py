@@ -1,17 +1,17 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 with open("README.md", 'r') as f:
     long_description = f.read()
 
 setup(
    name='big-fiubrother-core',
-   version='0.1.0',
+   version='0.1.1',
    description='Big Fiubrother Core Utilities',
    license="GPLv3",
    long_description=long_description,
    long_description_content_type='text/markdown',
    author='Eduardo Neira, Gabriel Gayoso',
    author_email='aneira@fi.uba.ar',
-   packages=['big_fiubrother_core'],
+   packages=find_packages(),
    url= 'https://github.com/BigFiuBrother/big-fiubrother-core'
 )

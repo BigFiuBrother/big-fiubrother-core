@@ -1,1 +1,2 @@
 from big_fiubrother_core.signal_handler import SignalHandler
+import big_fiubrother_core.messages

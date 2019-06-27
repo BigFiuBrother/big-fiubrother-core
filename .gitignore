@@ -2,4 +2,4 @@ big_fiubrother_core.egg-info/
 dist/
 build/
 *.pyc
-.idea
+.idea/

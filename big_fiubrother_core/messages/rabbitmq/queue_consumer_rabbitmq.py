@@ -1,7 +1,6 @@
 import threading
 import pika
 
-
 class QueueConsumerRabbitMq:
 
     def __init__(self, rabbitmqhost, consume_queue, consume_callback):

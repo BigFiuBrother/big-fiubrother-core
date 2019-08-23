@@ -1,10 +1,10 @@
 import pika
 
+
 class QueuePublisher:
 
     def __init__(self, rabbitmqhost, publish_queue):
-        self.connection = pika.BlockingConnection(pika.ConnectionParameters(
-            host=rabbitmqhost))
+        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmqhost))
         self.channel = self.connection.channel()
 
         self.publish_queue = publish_queue

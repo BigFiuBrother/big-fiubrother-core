@@ -1,5 +1,6 @@
 from big_fiubrother_core.messages.abstract_message import AbstractMessage
 from big_fiubrother_core.messages.batch_message import BatchMessage
+from big_fiubrother_core.messages.frame_message import FrameMessage
 from big_fiubrother_core.messages.camera_message import CameraMessage
 from big_fiubrother_core.messages.face_classification_message import FaceClassificationMessage
 from big_fiubrother_core.messages.face_embedding_message import FaceEmbeddingMessage

@@ -1,2 +1,2 @@
-from big_fiubrother_core.message_clients.rabbitmq.queue_consumer_rabbitmq import QueueConsumer
-from big_fiubrother_core.message_clients.rabbitmq.queue_publisher_rabbitmq import QueuePublisher
+from big_fiubrother_core.message_clients.rabbitmq.queue_consumer import QueueConsumer
+from big_fiubrother_core.message_clients.rabbitmq.queue_publisher import QueuePublisher

@@ -1,7 +1,7 @@
 import threading
+from abc import ABC, abstractmethod 
 
-
-class StoppableThread:
+class StoppableThread(ABC):
 
     def __init__(self):
         self._thread = threading.Thread(target=self.run)
@@ -30,7 +30,6 @@ class StoppableThread:
         finally:
             self.end_event.set()
 
-    #Override method in child class
     @abstractmethod
     def _execute(self):
         pass

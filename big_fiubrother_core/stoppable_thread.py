@@ -1,6 +1,7 @@
 import threading
 from abc import ABC, abstractmethod 
 
+
 class StoppableThread(ABC):
 
     def __init__(self):

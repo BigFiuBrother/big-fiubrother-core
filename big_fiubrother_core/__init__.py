@@ -1,4 +1,3 @@
-from . import SignalHandler
-from . import StoppableThread
-from . import image_processing_helper
+from big_fiubrother_core.signal_handler import SignalHandler
+from big_fiubrother_core.stoppable_thread import StoppableThread
 import big_fiubrother_core.message_clients

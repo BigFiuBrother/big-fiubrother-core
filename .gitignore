@@ -1,4 +1,5 @@
 big_fiubrother_core.egg-info/
+big-fiubrother-core-venv/
 dist/
 build/
 *.pyc

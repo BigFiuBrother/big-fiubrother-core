@@ -1,1 +1,2 @@
 import big_fiubrother_core.message_clients.rabbitmq
+import big_fiubrother_core.message_clients.kafka

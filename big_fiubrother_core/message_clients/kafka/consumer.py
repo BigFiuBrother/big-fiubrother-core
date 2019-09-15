@@ -13,7 +13,6 @@ class Consumer:
 
         self.topics = configuration['topics']
 
-
     def start(self):
         self.running = True
 

@@ -25,11 +25,19 @@ class StoppableThread(ABC):
     def run(self):
         try:
             self.end_event.clear()
-            
-            while not self.end_event.is_set():
+            self._init()
+
+            while self.running():
                 self._execute()
         finally:
+            self._stop()
             self.end_event.set()
+
+    def _init(self):
+        pass
+
+    def _stop(self):
+        pass
 
     @abstractmethod
     def _execute(self):

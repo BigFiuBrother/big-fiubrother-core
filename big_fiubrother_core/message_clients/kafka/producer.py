@@ -14,8 +14,8 @@ class Producer:
             print('Message delivered to {} [{}]'.format(msg.topic(), msg.partition()))
 
     def produce(self, message):
-        self._producer.poll(0)
         self._producer.produce(self.topic, message.encode(), callback= self._delivery_report)
+        self._producer.poll(0)
 
     def flush(self):
         self._producer.flush()

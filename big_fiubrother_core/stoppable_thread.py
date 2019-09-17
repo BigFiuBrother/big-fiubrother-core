@@ -18,6 +18,7 @@ class StoppableThread(ABC):
 
     def stop(self):
         self.end_event.set()
+        self._stop()
 
     def wait(self):
         self._thread.join()
@@ -30,7 +31,6 @@ class StoppableThread(ABC):
             while self.running():
                 self._execute()
         finally:
-            self._stop()
             self.end_event.set()
 
     def _init(self):

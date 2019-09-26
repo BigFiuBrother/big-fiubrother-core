@@ -5,7 +5,7 @@ with open("README.md", 'r') as f:
 
 setup(
    name='big-fiubrother-core',
-   version='0.1.1',
+   version='0.2.0',
    description='Big Fiubrother Core Utilities',
    license="GPLv3",
    long_description=long_description,

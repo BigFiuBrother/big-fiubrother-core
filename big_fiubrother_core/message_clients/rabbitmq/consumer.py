@@ -1,7 +1,7 @@
 import pika
 
 
-class QueueConsumer:
+class Consumer:
 
     def __init__(self, rabbitmqhost, consume_queue, consume_callback):
         self.connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmqhost))

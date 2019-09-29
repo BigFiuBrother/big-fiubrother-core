@@ -1,0 +1,2 @@
+from big_fiubrother_core.message_clients.rabbitmq.consumer import Consumer
+from big_fiubrother_core.message_clients.rabbitmq.publisher import Publisher

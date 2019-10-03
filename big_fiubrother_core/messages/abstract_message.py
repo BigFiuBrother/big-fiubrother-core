@@ -1,7 +1,7 @@
 import pickle
 
 
-def decode(data):
+def decode_message(data):
     return pickle.loads(data)
 
 class AbstractMessage:

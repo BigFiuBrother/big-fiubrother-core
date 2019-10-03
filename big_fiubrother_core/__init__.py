@@ -1,3 +1,3 @@
 from big_fiubrother_core.signal_handler import SignalHandler
 from big_fiubrother_core.stoppable_thread import StoppableThread
-import big_fiubrother_core.message_clients
+from big_fiubrother_core.application_setup import setup

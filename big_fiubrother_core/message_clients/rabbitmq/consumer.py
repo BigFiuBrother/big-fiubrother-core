@@ -3,12 +3,18 @@ import pika
 
 class Consumer:
 
-    def __init__(self, rabbitmqhost, consume_queue, consume_callback):
-        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmqhost))
-        self.channel = self.connection.channel()
+    def __init__(self, configuration, consume_callback):
+        self.host = configuration['host']
+        self.queue = configuration['queue']
         self.consume_callback = consume_callback
 
-        self.channel.basic_consume(queue=consume_queue, on_message_callback=self._process_message)
+        self.credentials = pika.PlainCredentials(configuration['username'], configuration['password'])
+        self.parameters = pika.ConnectionParameters(host=self.host, credentials=self.credentials)
+
+        self.connection = pika.BlockingConnection(self.parameters)
+        self.channel = self.connection.channel()
+
+        self.channel.basic_consume(queue=self.queue, on_message_callback=self._process_message)
     
     def start(self):
         self.channel.start_consuming()

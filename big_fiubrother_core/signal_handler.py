@@ -17,7 +17,7 @@ class SignalHandler:
         
         print(self.message)
 
-        for process in processes:
+        for process in self.processes:
             process.stop()
 
         if self.callback is not None:

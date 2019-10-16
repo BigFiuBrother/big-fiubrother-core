@@ -10,8 +10,8 @@ def image_to_RGB(image):
   return cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
 def image_to_bytes(image, extension='.jpg'):
-  ret_val, buffer = cv2.imencode(extension, image)
-  return buffer
+  ret_val, np_arr = cv2.imencode(extension, image)
+  return np_arr.tostring()
 
 def save_image(filepath, image):
   cv2.imwrite(filepath, image)

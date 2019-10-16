@@ -11,3 +11,7 @@ class Database:
         
         self.engine = create_engine('postgresql+psycopg2://{}:{}@{}/{}'.format(configuration['user'], configuration['password'], self.host, self.database_name))
         self.session = sessionmaker(bind=self.engine)
+
+    def add(mapped_object):
+        self.session.add(mapped_object)
+        self.session.commit()

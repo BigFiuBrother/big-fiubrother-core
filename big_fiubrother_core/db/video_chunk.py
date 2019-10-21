@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Blob
+from sqlalchemy import Column, Integer, String, LargeBinary
 from big_fiubrother_core.db import Base
 
 
@@ -8,4 +8,4 @@ class VideoChunk(Base):
     id = Column(Integer, primary_key=True)
     camera_id = Column(String)
     timestamp = Column(String)
-    payload = Column(Blob)
+    payload = Column(LargeBinary)

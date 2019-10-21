@@ -5,8 +5,6 @@ from big_fiubrother_core.messages.sampled_frame_message import SampledFrameMessa
 
 
 from big_fiubrother_core.messages.batch_message import BatchMessage
-from big_fiubrother_core.messages.frame_message import FrameMessage
-from big_fiubrother_core.messages.camera_message import CameraMessage
 from big_fiubrother_core.messages.face_classification_message import FaceClassificationMessage
 from big_fiubrother_core.messages.face_embedding_message import FaceEmbeddingMessage
 from big_fiubrother_core.messages.unknown_face_message import UnknownFaceMessage

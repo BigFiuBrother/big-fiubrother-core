@@ -24,3 +24,4 @@ class Consumer:
     
     def _process_message(self, ch, method, props, body):
         self.consume_callback(body)
+        ch.basic_ack(delivery_tag = method.delivery_tag)

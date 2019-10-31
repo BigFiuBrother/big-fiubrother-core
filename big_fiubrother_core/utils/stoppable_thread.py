@@ -1,10 +1,10 @@
 import threading
-from abc import ABC, abstractmethod 
 
 
-class StoppableThread(ABC):
+class StoppableThread():
 
-    def __init__(self):
+    def __init__(self, task):
+        self.task = task
         self._thread = threading.Thread(target=self.run)
 
         self.end_event = threading.Event()
@@ -18,7 +18,7 @@ class StoppableThread(ABC):
 
     def stop(self):
         self.end_event.set()
-        self._stop()
+        self.task.stop()
 
     def wait(self):
         self._thread.join()
@@ -26,19 +26,8 @@ class StoppableThread(ABC):
     def run(self):
         try:
             self.end_event.clear()
-            self._init()
-
-            while self.running():
-                self._execute()
+            self.task.init()
+            
+            self.task.execute()
         finally:
             self.end_event.set()
-
-    def _init(self):
-        pass
-
-    def _stop(self):
-        pass
-
-    @abstractmethod
-    def _execute(self):
-        pass

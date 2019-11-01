@@ -17,7 +17,6 @@ class StoppableThread():
         self._thread.start()
 
     def stop(self):
-        self.end_event.set()
         self.task.stop()
 
     def wait(self):

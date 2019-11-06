@@ -30,3 +30,4 @@ class StoppableThread():
             self.task.execute()
         finally:
             self.end_event.set()
+            self.task.close()

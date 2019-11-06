@@ -12,3 +12,6 @@ class Task(ABC):
 
     def stop(self):
         pass
+
+    def close(self):
+        pass

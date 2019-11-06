@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, Float, LargeBinary
+from sqlalchemy import Column, Integer, Float, String, LargeBinary
 from big_fiubrother_core.db import Base
 
 

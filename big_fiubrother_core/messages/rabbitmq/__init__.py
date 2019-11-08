@@ -1,2 +1,0 @@
-from big_fiubrother_core.messages.rabbitmq.queue_consumer_rabbitmq import QueueConsumerRabbitMq
-from big_fiubrother_core.messages.rabbitmq.queue_publisher_rabbitmq import QueuePublisherRabbitMq

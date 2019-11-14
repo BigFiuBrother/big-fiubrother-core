@@ -12,12 +12,12 @@ python -m pip install shovel
 
 ## Database
 
-### Setup
+### Create
 
 Creates postgresql database with entities. A postgresql server must be running in the target host before executing the script. Username and password are required.
 
 ```
-shovel db.setup [username] [password] ([host=localhost] [database_name=big_fiubrother])
+shovel db.create [username] [password] ([host=localhost] [database_name=big_fiubrother])
 ```
 
 ### Drop

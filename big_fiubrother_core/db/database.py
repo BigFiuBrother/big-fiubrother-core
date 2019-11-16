@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker
 import psycopg2
 
@@ -6,15 +6,16 @@ import psycopg2
 class Database:
 
     def __init__(self, configuration):
+        self.username = configuration['username']
+        self.password = configuration['password']
         self.host = configuration['host']
-        self.database_name = configuration['name']
+        self.database = configuration['database']
 
         self.engine = create_engine(
-            'postgresql+psycopg2://{}:{}@{}/{}'.format(
-                configuration['user'],
-                configuration['password'],
-                self.host,
-                self.database_name))
+            'postgresql+psycopg2://{}:{}@{}/{}'.format(self.username,
+                                                       self.password,
+                                                       self.host,
+                                                       self.database))
 
         Session = sessionmaker(bind=self.engine)
         self.session = Session()
@@ -22,3 +23,20 @@ class Database:
     def add(self, mapped_object):
         self.session.add(mapped_object)
         self.session.commit()
+
+    def truncate_all(self):
+        meta = MetaData(bind=self.engine, reflect=True)
+        con = self.engine.connect()
+
+        trans = con.begin()
+
+        con.execute('SET CONSTRAINTS ALL DEFERRED;')
+        for table in meta.sorted_tables:
+            con.execute(table.delete())
+        con.execute('SET CONSTRAINTS ALL IMMEDIATE;')
+
+        trans.commit()
+
+    def close(self):
+        self.session.close()
+        self.engine.dispose()

@@ -7,7 +7,10 @@ class Face(Base):
     __tablename__ = 'faces'
 
     id = Column(Integer, primary_key=True)
-    frame_id = Column(Integer, ForeignKey('frames.id'), nullable=False)
+    frame_id = Column(Integer,
+                      ForeignKey('frames.id', deferrable=True),
+                      nullable=False)
     bounding_box = Column(JSONB)
-    classification_id = Column(Integer, ForeignKey('people.id'))
+    classification_id = Column(Integer,
+                               ForeignKey('people.id', deferrable=True))
     probability_id = Column(Float)

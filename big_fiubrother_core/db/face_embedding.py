@@ -9,5 +9,5 @@ class FaceEmbedding(Base):
     id = Column(Integer, primary_key=True)
     embeddings = Column(ARRAY(Float))
     face_id = Column(Integer,
-                     ForeignKey('faces.id'),
+                     ForeignKey('faces.id', deferrable=True),
                      nullable=False)

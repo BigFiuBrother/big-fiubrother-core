@@ -5,6 +5,7 @@ class StoppableThread():
 
     def __init__(self, task):
         self.task = task
+        self.error = None
         self._thread = threading.Thread(target=self.run)
 
         self.end_event = threading.Event()
@@ -28,6 +29,8 @@ class StoppableThread():
             self.task.init()
             
             self.task.execute()
+        except Exception as e:
+            self.error = e
         finally:
             self.end_event.set()
             self.task.close()

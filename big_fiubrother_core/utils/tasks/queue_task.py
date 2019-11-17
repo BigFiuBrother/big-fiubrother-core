@@ -16,6 +16,7 @@ class QueueTask(Task):
 
             if message is not None:
                 self.execute_with(message)
+                self.input_queue.task_done()
 
     @abstractmethod
     def execute_with(self, message):

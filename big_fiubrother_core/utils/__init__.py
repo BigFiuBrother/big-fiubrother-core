@@ -1,5 +1,6 @@
 from big_fiubrother_core.utils.signal_handler import SignalHandler
 from big_fiubrother_core.utils.stoppable_thread import StoppableThread
+from big_fiubrother_core.utils.video_iterator import VideoIterator
 from big_fiubrother_core.utils.tasks import Task
 from big_fiubrother_core.utils.tasks import QueueTask
 from big_fiubrother_core.utils.tasks import ConsumeFromRabbitMQ

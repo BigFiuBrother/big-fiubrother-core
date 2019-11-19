@@ -1,5 +1,6 @@
 from big_fiubrother_core.utils import SignalHandler
 from big_fiubrother_core.utils import StoppableThread
+from big_fiubrother_core.utils import VideoIterator
 from big_fiubrother_core.utils import setup
 from big_fiubrother_core.utils import Task
 from big_fiubrother_core.utils import QueueTask

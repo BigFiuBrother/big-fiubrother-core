@@ -13,4 +13,4 @@ class Face(Base):
     bounding_box = Column(JSONB)
     classification_id = Column(Integer,
                                ForeignKey('people.id', deferrable=True))
-    probability_id = Column(Float)
+    probability_classification = Column(Float)

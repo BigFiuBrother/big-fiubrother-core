@@ -9,4 +9,4 @@ class VideoChunkMessage(AbstractMessage):
         self.payload = payload
 
     def filename(self):
-        return '{}_{}.h264'.format(message.camera_id, message.timestamp)
+        return '{}_{}'.format(message.camera_id, message.timestamp)

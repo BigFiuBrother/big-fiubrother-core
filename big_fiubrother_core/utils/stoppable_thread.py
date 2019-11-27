@@ -31,6 +31,7 @@ class StoppableThread():
             self.task.execute()
         except Exception as e:
             self.error = e
+            raise
         finally:
             self.end_event.set()
             self.task.close()

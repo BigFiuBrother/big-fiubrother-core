@@ -9,3 +9,6 @@ class VideoChunk(Base):
     camera_id = Column(String)
     timestamp = Column(Float)
     payload = Column(LargeBinary)
+
+    def filename(self):
+        return '{}_{}'.format(self.camera_id, self.timestamp)

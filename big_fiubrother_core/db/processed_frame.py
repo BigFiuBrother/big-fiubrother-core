@@ -6,8 +6,8 @@ class ProcessedFrame(Base):
     __tablename__ = 'processed_frames'
 
     frame_id = Column(Integer,
+                      ForeignKey('frames.id', deferrable=True),
                       primary_key=True,
-                      autoincrement=False,
-                      ForeignKey('frames.id', deferrable=True))
+                      autoincrement=False)
     total_faces_count = Column(Integer)
     processed_faces_count = Column(Integer)

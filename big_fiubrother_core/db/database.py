@@ -24,6 +24,12 @@ class Database:
         self.session.add(mapped_object)
         self.session.commit()
 
+    def get(self, db_class, object_id):
+        return self.session.query(db_class).filter_by(id=object_id).first()
+
+    def update(self):
+        self.session.commit()
+
     def truncate_all(self):
         meta = MetaData(bind=self.engine, reflect=True)
         con = self.engine.connect()

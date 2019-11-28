@@ -3,12 +3,7 @@ from big_fiubrother_core.messages import AbstractMessage
 
 class FaceEmbeddingMessage(AbstractMessage):
 
-    def __init__(self, camera_id, timestamp, frame_id, frame_bytes, face_boxes):
-
-        self.camera_id = camera_id
-        self.timestamp = timestamp
-
-        self.frame_id = frame_id
-        self.frame_bytes = frame_bytes
-
-        self.face_boxes = face_boxes
+    def __init__(self, video_chunk_id, detected_face_id, face_bytes):
+        self.video_chunk_id = video_chunk_id
+        self.detected_face_id = detected_face_id
+        self.face_bytes = face_bytes

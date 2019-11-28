@@ -7,7 +7,7 @@ class FaceEmbedding(Base):
     __tablename__ = 'face_embeddings'
 
     id = Column(Integer, primary_key=True)
-    embeddings = Column(ARRAY(Float))
     face_id = Column(Integer,
                      ForeignKey('faces.id', deferrable=True),
                      nullable=False)
+    embedding = Column(ARRAY(Float), nullable=False)

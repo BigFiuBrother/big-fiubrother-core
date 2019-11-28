@@ -11,3 +11,6 @@ class ProcessedFrame(Base):
                       autoincrement=False)
     total_faces_count = Column(Integer)
     processed_faces_count = Column(Integer)
+
+    def is_completed(self):
+        processed_faces_count == total_faces_count

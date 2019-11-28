@@ -11,3 +11,6 @@ class ProcessedVideoChunk(Base):
                       autoincrement=False)
     total_frames_count = Column(Integer)
     processed_frames_count = Column(Integer)
+
+    def is_completed(self):
+        processed_frames_count == total_frames_count

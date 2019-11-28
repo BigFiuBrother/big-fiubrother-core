@@ -8,7 +8,10 @@ class ProcessedFrame(Base):
     frame_id = Column(Integer,
                       ForeignKey('frames.id', deferrable=True),
                       primary_key=True,
-                      autoincrement=False
-                      )
+                      autoincrement=False)
+
     total_faces_count = Column(Integer)
     processed_faces_count = Column(Integer)
+
+    def is_completed(self):
+        processed_faces_count == total_faces_count

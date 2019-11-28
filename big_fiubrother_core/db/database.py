@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker
+from contextlib import contextmanager
 import psycopg2
-
 
 class Database:
 
@@ -29,6 +29,11 @@ class Database:
 
     def update(self):
         self.session.commit()
+
+    @contextmanager
+    def transaction(self):
+        with self.session.begin():
+            yield
 
     def truncate_all(self):
         meta = MetaData(bind=self.engine, reflect=True)

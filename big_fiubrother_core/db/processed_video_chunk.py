@@ -8,7 +8,10 @@ class ProcessedVideoChunk(Base):
     frame_id = Column(Integer,
                       ForeignKey('video_chunks.id', deferrable=True),
                       primary_key=True,
-                      autoincrement=False
-                      )
+                      autoincrement=False)
+
     total_frames_count = Column(Integer)
     processed_frames_count = Column(Integer)
+
+    def is_completed(self):
+        processed_frames_count == total_frames_count

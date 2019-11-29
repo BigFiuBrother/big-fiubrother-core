@@ -14,7 +14,7 @@ class Consumer:
         self.connection = pika.BlockingConnection(self.parameters)
         self.channel = self.connection.channel()
 
-        self.channel.basic_consume(queue=self.queue, on_message_callback=self._process_message)
+        self.channel.basic_consume(self._process_message, queue=self.queue)
     
     def start(self):
         self.channel.start_consuming()

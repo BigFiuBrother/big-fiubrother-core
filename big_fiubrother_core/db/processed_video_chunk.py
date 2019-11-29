@@ -5,7 +5,7 @@ from . import Base
 class ProcessedVideoChunk(Base):
     __tablename__ = 'processed_video_chunks'
 
-    frame_id = Column(Integer,
+    video_chunk_id = Column(Integer,
                       ForeignKey('video_chunks.id', deferrable=True),
                       primary_key=True,
                       autoincrement=False)

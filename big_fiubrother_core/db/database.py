@@ -24,11 +24,15 @@ class Database:
         self.session.add(mapped_object)
         self.session.commit()
 
-    def get(self, db_class, object_id):
-        return self.session.query(db_class).filter_by(id=object_id).first()
+    def get(self, db_class, id):
+        return self.session.query(db_class).get(id)
 
     def update(self):
         self.session.commit()
+
+    def delete(self, mapped_object):
+        self.session.delete(mapped_object)
+        self.ssesios.commit()
 
     @contextmanager
     def transaction(self):

@@ -1,5 +1,5 @@
 confluent-kafka
-pika
+pika=1.1.0
 paho-mqtt
 sqlalchemy
 psycopg2

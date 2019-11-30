@@ -2,8 +2,8 @@ from sqlalchemy import Column, Integer, ForeignKey
 from . import Base
 
 
-class ProcessedFrame(Base):
-    __tablename__ = 'processed_frames'
+class FrameProcess(Base):
+    __tablename__ = 'frame_processes'
 
     frame_id = Column(Integer,
                       ForeignKey('frames.id', deferrable=True),

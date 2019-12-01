@@ -14,4 +14,4 @@ class VideoChunkProcess(Base):
     processed_frames_count = Column(Integer, nullable=False, default=0)
 
     def is_completed(self):
-        processed_frames_count == total_frames_count
+        return self.processed_frames_count == self.total_frames_count

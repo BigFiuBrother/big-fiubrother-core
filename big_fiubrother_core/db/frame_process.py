@@ -14,4 +14,4 @@ class FrameProcess(Base):
     processed_faces_count = Column(Integer, nullable=False, default=0)
 
     def is_completed(self):
-        processed_faces_count == total_faces_count
+        return self.processed_faces_count == self.total_faces_count

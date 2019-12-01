@@ -1,7 +1,8 @@
 confluent-kafka
-pika=1.1.0
+pika==1.1.0
 paho-mqtt
 sqlalchemy
 psycopg2
 opencv-python
 shovel
+pyyaml

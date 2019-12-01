@@ -30,13 +30,13 @@ class Database:
     def update(self):
         self.session.commit()
 
-    def delete(self, mapped_object):
-        self.session.delete(mapped_object)
-        self.ssesios.commit()
+    def delete(self, db_class, condition):
+        self.session.query(db_class).filter(condition).delete()
+        self.session.commit()
 
     @contextmanager
     def transaction(self):
-        with self.session.begin():
+        with self.session.begin(subtransactions=True):
             yield
 
     def truncate_all(self):

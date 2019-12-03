@@ -1,4 +1,5 @@
 import threading
+import logging
 
 
 class StoppableThread():
@@ -24,14 +25,17 @@ class StoppableThread():
         self._thread.join()
 
     def run(self):
+        logging.debug('Task {} started'.format(self.task.name()))
         try:
             self.end_event.clear()
             self.task.init()
             
             self.task.execute()
         except Exception as e:
+            logging.error('Task {} raised: {}'.format(self.task.name(), e))
             self.error = e
             raise
         finally:
+            logging.debug('Task {} finished'.format(self.task.name()))
             self.end_event.set()
             self.task.close()

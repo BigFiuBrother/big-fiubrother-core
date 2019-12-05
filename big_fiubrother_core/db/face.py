@@ -1,6 +1,5 @@
 from sqlalchemy import Column, Integer, Float, Boolean, ForeignKey
 from sqlalchemy.dialects.postgresql import JSONB
-# from sqlalchemy.orm import relationship
 from . import Base
 
 
@@ -16,5 +15,4 @@ class Face(Base):
                                ForeignKey('people.id', deferrable=True))
     probability_classification = Column(Float)
     is_match = Column(Boolean)
-    # person = relationship('People')
     

@@ -28,9 +28,14 @@ def setup(application_name, config_path='config', log_path='log'):
 
     logging.getLogger('pika').setLevel(logging.WARNING)
 
-    logging.debug('APPLICATION STARTED')
-
+    
     configuration_filepath = os.path.join(config_path, '{}.yml'.format(environment))
 
+    assert os.path.exists(configuration_filepath), "Configuration: {} not found!".format(configuration_filepath)
+
     with open(configuration_filepath, 'r') as file:
-        return yaml.safe_load(file)
+        configuration = yaml.safe_load(file)
+    
+    logging.debug('APPLICATION STARTED')
+
+    return configuration

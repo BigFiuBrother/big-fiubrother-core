@@ -28,7 +28,6 @@ def setup(application_name, config_path='config', log_path='log'):
 
     logging.getLogger('pika').setLevel(logging.WARNING)
 
-    
     configuration_filepath = os.path.join(config_path, '{}.yml'.format(environment))
 
     assert os.path.exists(configuration_filepath), "Configuration: {} not found!".format(configuration_filepath)

@@ -13,8 +13,5 @@ class Task(ABC):
     def execute(self):
         raise NotImplementedError
 
-    def stop(self):
-        pass
-
     def close(self):
         pass

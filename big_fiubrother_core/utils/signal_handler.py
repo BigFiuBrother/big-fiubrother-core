@@ -3,10 +3,10 @@ import signal
 
 class SignalHandler:
 
-    def __init__(self, callback=None, processes=[], message='STOP signal received!'):
+    def __init__(self, callback=None, stoppables=[], message='STOP signal received!'):
         self.stop_signal_received = False
         self.callback = callback
-        self.processes = processes
+        self.stoppables = stoppables
         self.message = message
 
         signal.signal(signal.SIGINT, self.__stop_signal_received)
@@ -17,8 +17,8 @@ class SignalHandler:
         
         print(self.message)
 
-        for process in self.processes:
-            process.stop()
+        for stoppable in self.stoppables:
+            stoppable.stop()
 
         if self.callback is not None:
             self.callback()

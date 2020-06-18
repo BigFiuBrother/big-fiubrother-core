@@ -1,2 +1,0 @@
-from big_fiubrother_core.message_clients.kafka.producer import Producer
-from big_fiubrother_core.message_clients.kafka.consumer import Consumer

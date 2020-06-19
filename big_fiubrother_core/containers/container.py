@@ -27,7 +27,12 @@ class Container:
                 
                 if input_message is not None:
                     output_message = self.task.execute(input_message)
-                    output_interface.send(input_message)
+                    
+                    if not isinstance(output_message, list):
+                        output_message = [output_message]
+
+                    for message in output_message:
+                        output_interface.send(output_message)
 
         except Exception as e:
             logging.error('Task {} raised: {}'.format(self.task.name(), e))

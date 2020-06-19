@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, Float, String, LargeBinary
+from sqlalchemy import Column, Integer, Float, String
 from big_fiubrother_core.db import Base
 
 
@@ -8,7 +8,7 @@ class VideoChunk(Base):
     id = Column(Integer, primary_key=True)
     camera_id = Column(String, nullable=False)
     timestamp = Column(Float, nullable=False)
-    payload = Column(LargeBinary, nullable=False)
+    storage_path = Column(String, nullable=False)
 
     def filename(self):
         return '{}_{}'.format(self.camera_id, int(self.timestamp))

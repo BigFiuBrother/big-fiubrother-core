@@ -1,1 +1,1 @@
-from big_fiubrother_core.storage.s3storage import S3Storage
+from big_fiubrother_core.storage.s3_client import S3Client

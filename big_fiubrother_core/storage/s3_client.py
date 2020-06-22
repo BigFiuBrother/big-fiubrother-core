@@ -2,7 +2,7 @@ import logging
 from minio import Minio
 from minio.error import ResponseError
 
-class S3Storage:
+class S3Client:
 
     def __init__(self, configuration):
         self._host = configuration['host']
@@ -29,14 +29,14 @@ class S3Storage:
             logging.exception("Store file failed for {} -> {}".format(id, filepath))
             raise
 
-    def retrieve(self, id, filepath)
+    def retrieve(self, id, filepath):
         try:
             return minioClient.get_object(self.bucket, id, filepath).data
         except ResponseError as err:
             logging.exception("Retrieve failed for {} -> {}".format(id, filepath))
             raise
 
-    def retrieve_file(self, id, filepath)
+    def retrieve_file(self, id, filepath):
         try:
             minioClient.fget_object(self.bucket, id, filepath)
         except ResponseError as err:

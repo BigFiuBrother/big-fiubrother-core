@@ -1,11 +1,10 @@
 import multiprocessing
 from . import Container, AsyncContainer
-from .communication import Dummy
 
 
 class ProcessContainer(AsyncContainer):
 
-    def __init__(self, task, input_interface=Dummy(), output_interface=Dummy()):
+    def __init__(self, task, input_interface, output_interface):
         multiprocessing.managers.BaseManager.register('Container', Container)
         self._manager = multiprocessing.managers.BaseManager()
         self._manager.start()

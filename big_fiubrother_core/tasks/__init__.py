@@ -1,3 +1,1 @@
 from big_fiubrother_core.tasks.task import Task
-from big_fiubrother_core.tasks.consume_from_rabbitmq import ConsumeFromRabbitMQ
-from big_fiubrother_core.tasks.publish_to_rabbitmq import PublishToRabbitMQ

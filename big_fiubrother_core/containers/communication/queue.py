@@ -17,6 +17,9 @@ class Queue(Input, Output):
 
         return message
 
+    def stop(self):
+        self._queue.put(None)
+
     def send(self, message):
         logging.debug(
             'Sending message {}. Queue size: {}'.format(
@@ -24,6 +27,3 @@ class Queue(Input, Output):
                 self._queue.qsize()))
 
         self._queue.put(message)
-
-    def unblock(self):
-        self._queue.put(None)

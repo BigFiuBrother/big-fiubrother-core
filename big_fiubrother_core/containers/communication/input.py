@@ -1,11 +1,12 @@
 from abc import ABC, abstractmethod
 
 
-class Input:
+class Input(ABC):
 
     @abstractmethod
     def poll(self):
         pass
 
-    def unblock(self):
+    @abstractmethod
+    def stop(self):
         pass

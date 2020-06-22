@@ -1,11 +1,10 @@
 import threading
 from . import Container, AsyncContainer
-from .communication import Dummy
 
 
 class ThreadContainer(AsyncContainer):
 
-    def __init__(self, task, input_interface=Dummy(), output_interface=Dummy()):
+    def __init__(self, task, input_interface, output_interface):
         self._container = Container(
             task=task,
             input_interface =input_interface,

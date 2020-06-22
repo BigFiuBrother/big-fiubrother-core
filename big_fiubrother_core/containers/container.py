@@ -1,10 +1,9 @@
-from .communication import Dummy
 import logging
 
 
 class Container:
 
-    def __init__(self, task, input_interface=Dummy(), output_interface=Dummy()):
+    def __init__(self, task, input_interface, output_interface):
         self.task = task
         self.input_interface = input_interface
         self.output_interface = output_interface
@@ -14,17 +13,17 @@ class Container:
     def running(self):
         return self.running
 
-    def run():
+    def run(self):
         self.task.init()
         
-        logging.debug('Task {} started'.format(self.task.name()))
+        logging.debug('Container with task {} started'.format(self.task.name()))
         
         self.running = True
 
         try:
             while not self.stop_requested:
                 input_message = self.input_interface.poll()
-                
+
                 if input_message is not None:
                     output_message = self.task.execute(input_message)
                     
@@ -32,13 +31,13 @@ class Container:
                         output_message = [output_message]
 
                     for message in output_message:
-                        output_interface.send(output_message)
+                        self.output_interface.send(message)
 
         except Exception as e:
             logging.error('Task {} raised: {}'.format(self.task.name(), e))
             raise
         finally:
-            logging.debug('Task {} finished'.format(self.task.name()))
+            logging.debug('Container with task {} finished'.format(self.task.name()))
             self.task.close()
             
             self.running = False
@@ -47,4 +46,4 @@ class Container:
     def stop(self):
         if self.running:
             self.stop_requested = True
-            self.input_interface.unblock()
+            self.input_interface.stop()

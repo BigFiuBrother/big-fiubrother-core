@@ -15,4 +15,4 @@ class Face(Base):
                                ForeignKey('people.id', deferrable=True))
     probability_classification = Column(Float)
     is_match = Column(Boolean)
-    
+

@@ -1,4 +1,4 @@
-from big_fiubrother_core.messages.abstract_message import decode_message
+from big_fiubrother_core.messages.abstract_message import decode_message, encode_message
 from big_fiubrother_core.messages.abstract_message import AbstractMessage
 from big_fiubrother_core.messages.video_chunk_message import VideoChunkMessage
 from big_fiubrother_core.messages.frame_message import FrameMessage

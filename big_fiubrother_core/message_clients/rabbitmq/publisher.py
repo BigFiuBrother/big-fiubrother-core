@@ -14,4 +14,4 @@ class Publisher:
         self.channel = self.connection.channel()
 
     def publish(self, message):
-        self.channel.basic_publish(self.exchange, self.routing_key, message.encode())
+        self.channel.basic_publish(self.exchange, self.routing_key, message)

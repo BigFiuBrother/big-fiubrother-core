@@ -1,7 +1,6 @@
-confluent-kafka
 pika==1.1.0
-paho-mqtt
 sqlalchemy
+minio
 psycopg2
 shovel
 pyyaml

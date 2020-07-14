@@ -2,17 +2,18 @@ import logging
 from minio import Minio
 from minio.error import ResponseError
 
-class S3Storage:
+
+class S3Client:
 
     def __init__(self, configuration):
-        self.host = configuration['host']
-        self.access_key = configuration['access_key']
-        self.secret_key = configuration['secret_key']
+        self._host = configuration['host']
+        self._access_key = configuration['access_key']
+        self._secret_key = configuration['secret_key']
         self.bucket = configuration['bucket']
 
-        self.client = Minio(self.host,
-            access_key=self.access_key,
-            secret_key=self.secret_key,
+        self.client = Minio(self._host,
+            access_key=self._access_key,
+            secret_key=self._secret_key,
             secure=False)
 
     def store(self, id, object, size):

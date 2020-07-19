@@ -4,12 +4,6 @@ Big Fiubrother core utilities
 
 # Scripts
 
-Install shovel to run utility scripts. This can be achieved by running the following command:
-
-```
-python -m pip install shovel
-```
-
 ## Database
 
 ### Create

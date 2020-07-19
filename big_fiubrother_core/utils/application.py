@@ -2,7 +2,7 @@ import yaml
 import argparse
 import logging
 import os
-
+from . import SignalHandler
 
 def setup(application_name, config_path='config', log_path='log', tmp_path='tmp'):
     parser = argparse.ArgumentParser(description=application_name)
@@ -44,3 +44,15 @@ def setup(application_name, config_path='config', log_path='log', tmp_path='tmp'
     logging.debug('APPLICATION STARTED')
 
     return configuration
+
+def run(processes):
+    SignalHandler(callback=processes[0].stop)
+
+    for process in processes:
+        process.start()
+
+    for i, process in enumerate(processes):
+        process.wait()
+
+        if i + 1 < len(processes):
+            processes[i+1].stop()

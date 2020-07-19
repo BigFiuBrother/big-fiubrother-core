@@ -1,1 +1,2 @@
 from big_fiubrother_core.storage.s3_client import S3Client
+from big_fiubrother_core.storage.video_chunks import raw_storage, processed_storage

@@ -30,11 +30,11 @@ class S3Client:
             logging.exception("Store file failed for {} -> {}".format(id, filepath))
             raise
 
-    def retrieve(self, id, filepath):
+    def retrieve(self, id):
         try:
-            return self.client.get_object(self.bucket, id, filepath).data
+            return self.client.get_object(self.bucket, id).data
         except ResponseError as err:
-            logging.exception("Retrieve failed for {} -> {}".format(id, filepath))
+            logging.exception("Retrieve failed for {}".format(id))
             raise
 
     def retrieve_file(self, id, filepath):

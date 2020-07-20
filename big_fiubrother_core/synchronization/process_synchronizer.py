@@ -23,7 +23,7 @@ class ProcessSynchronizer:
 
     def is_video_task_finished(self, video_id):
         children = self.zk_client.get_children(self._to_path(video_id))
-        return len(children) == 0
+        return [len(children) == 0, len(children)]
 
     def _to_path(self, *dirs):
         return '/' + '/'.join(dirs)

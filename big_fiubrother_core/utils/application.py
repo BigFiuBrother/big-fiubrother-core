@@ -45,7 +45,7 @@ def setup(application_name, config_path='config', log_path='log', tmp_path='tmp'
 
     return configuration
 
-def run(processes, main_process=None):
+def run(processes=[], main_process=None):
     process_to_stop = main_process if main_process is not None else processes[0]
     
     SignalHandler(callback=process_to_stop.stop)

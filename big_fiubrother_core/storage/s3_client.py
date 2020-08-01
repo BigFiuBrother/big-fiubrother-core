@@ -7,11 +7,12 @@ class S3Client:
 
     def __init__(self, configuration):
         self._host = configuration['host']
+        self._port = configuration['port']
         self._access_key = configuration['access_key']
         self._secret_key = configuration['secret_key']
         self.bucket = configuration['bucket']
 
-        self.client = Minio(self._host,
+        self.client = Minio("{}:{}".format(self._host, self._port),
             access_key=self._access_key,
             secret_key=self._secret_key,
             secure=False)

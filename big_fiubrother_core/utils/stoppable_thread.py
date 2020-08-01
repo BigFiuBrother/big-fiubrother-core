@@ -24,6 +24,9 @@ class StoppableThread():
     def wait(self):
         self._thread.join()
 
+    def name(self):
+        self.task.name()
+
     def run(self):
         logging.debug('Task {} started'.format(self.task.name()))
         try:

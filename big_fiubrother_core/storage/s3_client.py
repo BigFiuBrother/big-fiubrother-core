@@ -16,9 +16,9 @@ class S3Client:
             secret_key=self._secret_key,
             secure=False)
 
-    def store(self, id, object, size):
+    def store(self, id, data, size):
         try:
-            self.client.put_object(self.bucket, id, data=object, length=size)
+            self.client.put_object(self.bucket, id, data=data, length=size)
         except ResponseError as err:
             logging.exception("Store failed for {}".format(id))
             raise

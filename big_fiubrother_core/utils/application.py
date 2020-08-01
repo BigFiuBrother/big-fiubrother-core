@@ -56,6 +56,9 @@ def run(processes=[], main_process=None):
     if main_process is not None:
         main_process.run()
 
+        if len(processes) > 0:
+            processes[0].stop()
+
     for i, process in enumerate(processes):
         process.wait()
 

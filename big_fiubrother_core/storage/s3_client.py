@@ -19,28 +19,28 @@ class S3Client:
 
     def store(self, id, data, size):
         try:
-            self.client.put_object(self.bucket, id, data=data, length=size)
+            self.client.put_object(self.bucket, str(id), data=data, length=size)
         except ResponseError as err:
             logging.exception("Store failed for {}".format(id))
             raise
 
     def store_file(self, id, filepath):
         try:
-            self.client.fput_object(self.bucket, id, filepath)
+            self.client.fput_object(self.bucket, str(id), filepath)
         except ResponseError as err:
             logging.exception("Store file failed for {} -> {}".format(id, filepath))
             raise
 
     def retrieve(self, id):
         try:
-            return self.client.get_object(self.bucket, id).data
+            return self.client.get_object(self.bucket, str(id)).data
         except ResponseError as err:
             logging.exception("Retrieve failed for {}".format(id))
             raise
 
     def retrieve_file(self, id, filepath):
         try:
-            self.client.fget_object(self.bucket, id, filepath)
+            self.client.fget_object(self.bucket, str(id), filepath)
         except ResponseError as err:
             logging.exception("Retrieve file failed for {} -> {}".format(id, filepath))
             raise

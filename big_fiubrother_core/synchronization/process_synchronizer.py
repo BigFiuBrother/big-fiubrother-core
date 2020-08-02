@@ -38,7 +38,7 @@ class ProcessSynchronizer:
         return [len(children) == 0, len(children)]
 
     def _to_path(self, *dirs):
-        return '/' + '/'.join(dirs)
+        return ''.join(['/{}'.format(d) for d in dirs])
 
     def close(self):
         self.zk_client.close()

@@ -1,4 +1,5 @@
 from kazoo.client import KazooClient
+from kazoo.exceptions import BadVersionError, NoNodeError 
 from contextlib import contextmanager
 import logging
 
@@ -36,6 +37,14 @@ class ZookeeperClient:
 
     def delete_node(self, path):
         self.client.delete(path)
+
+    def safe_delete_node(self, path):
+        try:
+            self.client.delete(path)
+        except BadVersionError as e:
+            logging.warn("Bad Version Error")
+        except NoNodeError as e:
+            logging.warn("No Node Error")
 
     def close(self):
         self.client.stop()

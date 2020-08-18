@@ -23,7 +23,7 @@ class ProcessSynchronizer:
             self._to_path(video_id, frame_id, face_id))
 
     def complete_frame_task(self, video_id, frame_id):
-        self.zk_client.delete_node(
+        self.zk_client.safe_delete_node(
             self._to_path(video_id, frame_id))
 
     def complete_video_task(self, video_id):

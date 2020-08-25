@@ -41,10 +41,13 @@ class ZookeeperClient:
     def safe_delete_node(self, path):
         try:
             self.client.delete(path)
+            return True
         except BadVersionError as e:
             logging.warn("Bad Version Error")
+            return False
         except NoNodeError as e:
             logging.warn("No Node Error")
+            return False
 
     def close(self):
         self.client.stop()

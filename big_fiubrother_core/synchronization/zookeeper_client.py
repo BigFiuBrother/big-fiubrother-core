@@ -23,6 +23,12 @@ class ZookeeperClient:
     def get_children(self, path):
         return self.client.get_children(path)
 
+    def get_children_count(self, path):
+        try:
+            return len(self.get_children(path))
+        except NoNodeError:
+            return -1
+
     @contextmanager
     def transaction(self):
         transaction = self.client.transaction()

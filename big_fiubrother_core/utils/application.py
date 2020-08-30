@@ -2,9 +2,43 @@ import yaml
 import argparse
 import logging
 import os
+import graypy
+from multiprocessing import Queue
+from contextlib import contextmanager
+from logging.handlers import QueueHandler, QueueListener
+from setproctitle import setproctitle, getproctitle
 from . import SignalHandler
 
+
+# Start asynchronous logger, uses process name in logging. Probably should call setup() before running
+def start_logger(configuration, application_name=getproctitle()):
+    logging.getLogger('pika').setLevel(logging.WARNING)
+    logging.getLogger('kazoo.client').setLevel(logging.INFO)
+
+    log_queue = Queue()
+    
+    queue_handler = QueueHandler(log_queue)
+
+    graylog_handler = graypy.GELFUDPHandler(
+        host=configuration['host'],
+        port=configuration['port'],
+        facility=application_name)
+
+    remote_listener = QueueListener(log_queue, graylog_handler)
+
+    logging.basicConfig(level=logging.DEBUG,
+                        handlers=[queue_handler])
+
+    remote_listener.start()
+
+    logging.debug("Logging service started!")
+
+    return remote_listener
+
+# Setup for application. Loads configuration
 def setup(application_name, config_path='config', log_path='log', tmp_path='tmp'):
+    setproctitle(application_name)
+
     parser = argparse.ArgumentParser(description=application_name)
     parser.add_argument('environment',
                         type=str,
@@ -16,22 +50,9 @@ def setup(application_name, config_path='config', log_path='log', tmp_path='tmp'
 
     environment = args.environment.lower()
 
-    # Create tmp and log folders
+    # Create tmp folders
     if not os.path.exists(tmp_path):
         os.makedirs(tmp_path)
-
-    if not os.path.exists(log_path):
-        os.makedirs(log_path)
-
-    # Set up logging
-    log_format = '%(asctime)s  %(levelname)s  %(process)d  %(thread)d  %(message)s'
-    log_filepath = os.path.join(log_path, '{}.log'.format(environment))
-    logging.basicConfig(level=logging.DEBUG,
-                        format=log_format,
-                        datefmt='%Y-%m-%d %H:%M:%S',
-                        filename=log_filepath)
-
-    logging.getLogger('pika').setLevel(logging.WARNING)
 
     # Load configuration
     configuration_filepath = os.path.join(config_path, '{}.yml'.format(environment))
@@ -40,11 +61,10 @@ def setup(application_name, config_path='config', log_path='log', tmp_path='tmp'
 
     with open(configuration_filepath, 'r') as file:
         configuration = yaml.safe_load(file)
-    
-    logging.debug('APPLICATION STARTED')
 
     return configuration
 
+# Run synchronous and asynchronous processes
 def run(processes=[], main_process=None):
     process_to_stop = main_process if main_process is not None else processes[0]
     
@@ -64,3 +84,13 @@ def run(processes=[], main_process=None):
 
         if i + 1 < len(processes):
             processes[i+1].stop()
+
+@contextmanager
+def runtime_context(application_name):
+    configuration = setup(application_name)
+
+    logging_service = start_logger(configuration['logging'], application_name)
+
+    yield configuration
+
+    logging_service.stop()

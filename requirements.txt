@@ -6,3 +6,5 @@ shovel
 pyyaml
 kazoo
 shovel
+graypy[amqp]
+setproctitle

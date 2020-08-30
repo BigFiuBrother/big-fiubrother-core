@@ -24,6 +24,7 @@ class ProcessSynchronizer:
             self._to_path(video_id, frame_id, face_id))
 
         remaining_faces = self.zk_client.get_children_count(self._to_path(video_id, frame_id))
+        
         if remaining_faces == 0:
             return self.complete_frame_task(video_id, frame_id)
 
@@ -33,6 +34,7 @@ class ProcessSynchronizer:
     def complete_frame_task(self, video_id, frame_id):
         if self.zk_client.safe_delete_node(self._to_path(video_id, frame_id)):
             remaining_frames = self.zk_client.get_children_count(self._to_path(video_id))
+            
             if remaining_frames == 0:
                 return self.complete_video_task(video_id)
 

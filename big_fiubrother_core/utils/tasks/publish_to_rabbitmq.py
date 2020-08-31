@@ -1,6 +1,7 @@
 from ...message_clients.rabbitmq import Publisher
 from ...messages import encode_message
 from . import QueueTask
+import logging
 
 
 class PublishToRabbitMQ(QueueTask):

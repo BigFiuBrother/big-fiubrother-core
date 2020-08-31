@@ -16,7 +16,7 @@ class QueueTask(Task):
         while self.running:
             message = self.input_queue.get()
             message_id = uuid()
-            logging.debug(
+            logging.trace(
                 'Received message {}. Queue size: {}'.format(
                     str(message_id),
                     self.input_queue.qsize()))

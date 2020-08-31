@@ -7,3 +7,6 @@ class VideoChunkMessage(AbstractMessage):
         self.camera_id = camera_id
         self.timestamp = timestamp
         self.payload = payload
+
+    def id(self):
+        return "{}-{}".format(self.camera_id, self.timestamp)

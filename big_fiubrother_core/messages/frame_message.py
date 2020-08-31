@@ -7,3 +7,6 @@ class FrameMessage(AbstractMessage):
         self.video_chunk_id = video_chunk_id
         self.frame_id = frame_id
         self.payload = payload
+
+    def id(self):
+        return "{}-{}".format(self.video_chunk_id, self.frame_id)

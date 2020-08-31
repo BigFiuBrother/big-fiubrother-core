@@ -1,6 +1,7 @@
 from ...message_clients.rabbitmq import Consumer
 from ...messages import decode_message
 from . import Task
+import logging
 
 
 class ConsumeFromRabbitMQ(Task):
@@ -21,4 +22,6 @@ class ConsumeFromRabbitMQ(Task):
         self.consumer.stop()
 
     def _consumer_callback(self, body):
-        self.output_queue.put(decode_message(body))
+        message = decode_message(body)
+        logging.debug("RabbitMQConsumer fetched message: {}".format(message.id()))
+        self.output_queue.put(message)

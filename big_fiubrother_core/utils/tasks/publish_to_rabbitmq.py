@@ -15,6 +15,6 @@ class PublishToRabbitMQ(QueueTask):
         self.publisher = Publisher(self.configuration)
 
     def execute_with(self, message):
-        message = encode_message(message)
         logging.debug("RabbitMQPublisher message to publish: {}".format(message.id()))
+        message = encode_message(message)
         self.publisher.publish(message)

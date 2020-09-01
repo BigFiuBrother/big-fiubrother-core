@@ -1,6 +1,3 @@
-import cv2
-
-
 class VideoIterator:
 
     def __init__(self, video_capture):

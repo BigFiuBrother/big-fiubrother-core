@@ -23,5 +23,5 @@ class ConsumeFromRabbitMQ(Task):
 
     def _consumer_callback(self, body):
         message = decode_message(body)
-        logging.debug("RabbitMQConsumer fetched message: {}".format(message.id()))
+        logging.info("RabbitMQConsumer fetched message: {}".format(message.id()))
         self.output_queue.put(message)

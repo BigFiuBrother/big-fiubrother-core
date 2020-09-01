@@ -26,7 +26,7 @@ def start_logger(configuration, application_name=getproctitle()):
 
     remote_listener = QueueListener(log_queue, graylog_handler)
 
-    logging.basicConfig(level=logging.DEBUG,
+    logging.basicConfig(level=logging.INFO,
                         handlers=[queue_handler])
 
     remote_listener.start()
@@ -91,6 +91,10 @@ def runtime_context(application_name):
 
     logging_service = start_logger(configuration['logging'], application_name)
 
+    logging.info("{} started!".format(application_name))
+
     yield configuration
 
+    logging.info("{} finished!".format(application_name))
+    
     logging_service.stop()

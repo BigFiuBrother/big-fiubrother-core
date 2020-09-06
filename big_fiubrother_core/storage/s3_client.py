@@ -1,4 +1,5 @@
 import logging
+from math import trunc
 from time import time
 from minio import Minio
 from minio.error import ResponseError
@@ -63,4 +64,4 @@ class S3Client:
             self.bucket,
             operation, 
             id,
-            floor((end - start) * 1000)))
+            trunc((end - start) * 1000)))

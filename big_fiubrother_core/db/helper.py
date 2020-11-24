@@ -22,7 +22,7 @@ def create_cursor(username, password, host, database='postgres'):
 
 def create(username, password, host, database):
     with create_cursor(username, password, host) as cursor:
-        # cursor.execute('CREATE DATABASE {};'.format(database))
+        cursor.execute('CREATE DATABASE {};'.format(database))
 
         engine = create_engine(
             'postgresql+psycopg2://{}:{}@{}/{}'.format(username,

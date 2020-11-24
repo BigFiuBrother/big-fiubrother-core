@@ -3,7 +3,7 @@ from . import Base
 
 
 class Person(Base):
-    __tablename__ = 'people'
+    __tablename__ = 'person'
 
     id = Column(Integer, primary_key=True)
     name = Column(String)

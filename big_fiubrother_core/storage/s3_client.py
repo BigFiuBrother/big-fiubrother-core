@@ -7,7 +7,6 @@ from contextlib import contextmanager
 
 
 class S3Client:
-
     FETCH = "FETCH"
     UPLOAD = "UPLOAD"
 
@@ -19,49 +18,49 @@ class S3Client:
         self.bucket = configuration['bucket']
 
         self.client = Minio("{}:{}".format(self._host, self._port),
-            access_key=self._access_key,
-            secret_key=self._secret_key,
-            secure=False)
+                            access_key=self._access_key,
+                            secret_key=self._secret_key,
+                            secure=False)
 
-    def store(self, id, data, size):
-        with self.timer(id, self.UPLOAD):
+    def store(self, object_id, data, size):
+        with self.timer(object_id, self.UPLOAD):
             try:
-                self.client.put_object(self.bucket, str(id), data=data, length=size)
+                self.client.put_object(self.bucket, str(object_id), data=data, length=size)
             except ResponseError as err:
-                logging.exception("Store failed for {}".format(id))
+                logging.exception("Store failed for {}".format(object_id))
                 raise
 
-    def store_file(self, id, filepath):
-        with self.timer(id, self.UPLOAD):
+    def store_file(self, object_id, filepath):
+        with self.timer(object_id, self.UPLOAD):
             try:
-                self.client.fput_object(self.bucket, str(id), filepath)
+                self.client.fput_object(self.bucket, str(object_id), filepath)
             except ResponseError as err:
-                logging.exception("Store file failed for {} -> {}".format(id, filepath))
+                logging.exception("Store file failed for {} -> {}".format(object_id, filepath))
                 raise
 
-    def retrieve(self, id):
-        with self.timer(id, self.UPLOAD):
+    def retrieve(self, object_id):
+        with self.timer(object_id, self.UPLOAD):
             try:
-                return self.client.get_object(self.bucket, str(id)).data
+                return self.client.get_object(self.bucket, str(object_id)).data
             except ResponseError as err:
-                logging.exception("Retrieve failed for {}".format(id))
+                logging.exception("Retrieve failed for {}".format(object_id))
                 raise
 
-    def retrieve_file(self, id, filepath):
-        with self.timer(id, self.UPLOAD):
+    def retrieve_file(self, object_id, filepath):
+        with self.timer(object_id, self.UPLOAD):
             try:
-                self.client.fget_object(self.bucket, str(id), filepath)
+                self.client.fget_object(self.bucket, str(object_id), filepath)
             except ResponseError as err:
-                logging.exception("Retrieve file failed for {} -> {}".format(id, filepath))
+                logging.exception("Retrieve file failed for {} -> {}".format(object_id, filepath))
                 raise
 
     @contextmanager
-    def timer(self,id, operation):
+    def timer(self, object_id, operation):
         start = time()
         yield
         end = time()
         logging.info("S3 {} - {} for {} time elapsed: {}".format(
             self.bucket,
-            operation, 
-            id,
+            operation,
+            object_id,
             trunc((end - start) * 1000)))

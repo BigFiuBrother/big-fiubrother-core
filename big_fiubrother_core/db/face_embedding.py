@@ -4,10 +4,10 @@ from . import Base
 
 
 class FaceEmbedding(Base):
-    __tablename__ = 'face_embeddings'
+    __tablename__ = 'face_embedding'
 
     id = Column(Integer, primary_key=True)
     face_id = Column(Integer,
-                     ForeignKey('faces.id', deferrable=True),
+                     ForeignKey('face.id', deferrable=True),
                      nullable=False)
     embedding = Column(ARRAY(Float), nullable=False)

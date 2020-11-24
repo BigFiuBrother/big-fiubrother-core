@@ -5,6 +5,6 @@ psycopg2
 shovel
 pyyaml
 kazoo
-shovel
+opencv-python
 graypy[amqp]
 setproctitle

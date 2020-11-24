@@ -5,15 +5,15 @@ from . import Base
 
 
 class Face(Base):
-    __tablename__ = 'faces'
+    __tablename__ = 'face'
 
     id = Column(Integer, primary_key=True)
     frame_id = Column(Integer,
-                      ForeignKey('frames.id', deferrable=True),
+                      ForeignKey('frame.id', deferrable=True),
                       nullable=False)
     bounding_box = Column(JSONB, nullable=False)
     classification_id = Column(Integer,
-                               ForeignKey('people.id', deferrable=True))
+                               ForeignKey('person.id', deferrable=True))
     probability_classification = Column(Float)
     is_match = Column(Boolean)
     person = relationship("Person", backref='Person', uselist=False)

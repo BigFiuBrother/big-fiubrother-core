@@ -1,5 +1,5 @@
 from shovel import task
-import big_fiubrother_core.db.helper as db_helper
+import modules.db.helper as db_helper
 
 DATABASE = 'big_fiubrother'
 LOCALHOST = 'localhost'

@@ -1,4 +1,0 @@
-message_consumer:
-  type: 'queue_consumer_rabbitmq'
-  rabbitmqhost: 'localhost'
-  queue_name: 'FRAME_DISPLAY'

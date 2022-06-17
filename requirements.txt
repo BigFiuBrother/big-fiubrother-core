@@ -1,10 +1,7 @@
-pika==1.1.0
 sqlalchemy
 minio
 psycopg2
 shovel
-pyyaml
 kazoo
-shovel
 graypy[amqp]
 setproctitle

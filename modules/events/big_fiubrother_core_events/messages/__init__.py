@@ -1,0 +1,2 @@
+from modules.events.big_fiubrother_core_events.messages.frame_message import FrameMessage
+from modules.messages.face_embedding_message import FaceEmbeddingMessage

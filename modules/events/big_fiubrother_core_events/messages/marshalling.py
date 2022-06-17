@@ -1,0 +1,9 @@
+import pickle
+
+
+def decode_message(data):
+    return pickle.loads(data)
+
+
+def encode_message(encoded_data):
+    return pickle.dumps(encoded_data)

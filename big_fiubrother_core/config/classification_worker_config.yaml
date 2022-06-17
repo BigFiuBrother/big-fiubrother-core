@@ -1,9 +1,0 @@
-message_publisher:
-  type: 'queue_publisher_rabbitmq'
-  rabbitmqhost: 'localhost'
-  queue_name: 'FRAME_DISPLAY'
-message_consumer:
-  type: 'queue_consumer_rabbitmq'
-  rabbitmqhost: 'localhost'
-  queue_name: 'FACE_CLASSIFICATION'
-classifier_pkl: '/home/gabriel/Desktop/bigfiubrother/big-fiubrother-core/sv_fiuba.pkl'

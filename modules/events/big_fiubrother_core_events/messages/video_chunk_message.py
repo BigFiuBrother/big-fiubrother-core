@@ -5,4 +5,4 @@ class VideoChunkMessage:
         self.timestamp = timestamp
 
     def id(self):
-        return f"{self.camera_id}-{self.timestamp}"
+        return f'{self.camera_id}-{self.timestamp}'
